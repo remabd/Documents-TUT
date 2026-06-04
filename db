@@ -1,0 +1,71 @@
+model User = {
+    id  String
+    nom String
+    prenom String
+    address_line_1 String
+    address_line_2 String
+    postal_code Number
+    city String
+    role String
+    created_at String
+}
+
+model Participation = {
+    id String
+    user_id FK
+    slot_id FK
+    created_at String
+}
+
+model ProductType = {
+    id String
+    name String
+    max_quantity Number
+    created_at String
+}
+
+model Product = {
+    id String
+    product_type FK
+    date d'arrive
+    date sortie
+    premption
+}
+
+model Slot = {
+    id String
+    name String
+    debut String
+    fin String
+    Status String
+    created_at String
+}
+
+model Cart = {
+    id String
+    user_id FK
+    prix Number
+    created_at String
+}
+
+model ProductQty = {
+    id String
+    cart_id FK
+    product_id FK
+    quantity Number
+    prix Number
+}
+
+model Command = {
+    id String
+    created_at String
+    user_id FK
+}
+
+model CommandProduct = {
+    id String
+    command_id FK
+?    product_type_id FK
+    quantity
+}
+

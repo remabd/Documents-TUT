@@ -1,0 +1,98 @@
+@startuml
+
+entity Utilisateur {
+    * id: varchar <<PK>>
+    --
+    nom: varchar
+    prenom: varchar
+    adresse: varchar
+    code_postal: integer
+    ville: varchar
+    mot_de_passe: varchar
+    role: varchar
+    date_creation: varchar
+}
+
+entity Participation {
+    * id: varchar <<PK>>
+    --
+    * utilisateur_id: varchar <<FK>>
+    * creneau_id: varchar <<FK>>
+    date_creation: varchar
+}
+
+entity Type_Produit {
+    * id: varchar <<PK>>
+    --
+    nom: varchar
+    quantite_max: float
+    unite: varchar
+    prix: float
+    date_creation: varchar
+}
+
+entity Produit {
+    * id: varchar <<PK>>
+    --
+    type_produit_id: varchar <<FK>>
+    quantite: float
+    date_arrive: varchar
+    date_sortie: varchar
+    date_peremption: varchar
+}
+
+entity Creneau {
+    * id: varchar <<PK>>
+    --
+    nom: varchar
+    date_debut: varchar
+    date_fin: varchar
+    statut: varchar
+    description: text
+    capacite: integer
+    date_creation: varchar
+}
+
+entity Panier {
+    * id: varchar <<PK>>
+    --
+    *utilisateur_id: varchar <<FK>>
+    prix: float
+    date_creation: varchar
+}
+
+entity Produit_Panier {
+    * id: varchar <<PK>>
+    --
+    * panier_id: varchar <<FK>>
+    * produit_id: varchar <<FK>>
+    quantite: float
+    unite: varchar
+    prix: float
+}
+
+entity Commande {
+    * id: varchar <<PK>>
+    --
+    * utilisateur_id: varchar <<FK>>
+    date_creation: varchar
+}
+
+entity Commande_Produit {
+    * id: varchar <<PK>>
+    --
+    * commande_id: varchar <<FK>>
+    * type_produit_id: varchar <<FK>>
+    quantite: float
+}
+
+Creneau ||..o{ Participation
+Participation }o..|| Utilisateur
+Panier }o..|| Utilisateur
+Produit_Panier }o..|| Panier
+Produit ||..o{ Produit_Panier
+Produit }o..|| Type_Produit
+Type_Produit }o..|| Commande_Produit
+Commande_Produit ||..o{ Commande
+
+@enduml
