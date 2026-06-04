@@ -5,6 +5,7 @@ entity Utilisateur {
     --
     nom: varchar
     prenom: varchar
+    email: varchar
     adresse: varchar
     code_postal: integer
     ville: varchar
